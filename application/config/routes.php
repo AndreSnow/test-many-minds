@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -49,6 +49,70 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+
+/*
+| -------------------------------------------------------------------------
+| Routes of the Controllers
+| -------------------------------------------------------------------------
+| @package TMM
+| @author  André Neves
+| @version 1.0 
+| @since 2023-03-19
+| @description This file contains the routes of the controllers.
+*/
+
+/*
+| -------------------------------------------------------------------------
+| Auth controller
+| -------------------------------------------------------------------------
+| @description This controller is responsible for authentication and login
+| of users.
+ */
+$route['login']['get'] = 'auth';
+$route['login']['post'] = 'auth/login';
+$route['logout']['get'] = 'auth/logout';
+
+/*
+| -------------------------------------------------------------------------
+| Collaborator controller
+| -------------------------------------------------------------------------
+| @description This controller is responsible for the CRUD of collaborators.
+ */
+$route['collaborators']['get'] = 'collaborator';
+$route['collaborators/create']['get'] = 'collaborator/create';
+$route['collaborators/create']['post'] = 'collaborator/createCollaborator';
+$route['collaborators/edit/(:num)']['get'] = 'collaborator/edit/$1';
+$route['collaborators/edit/(:num)']['post'] = 'collaborator/edit/$1';
+$route['collaborators/update/(:num)']['post'] = 'collaborator/update/$1';
+
+/*
+| -------------------------------------------------------------------------
+| Product controller
+| -------------------------------------------------------------------------
+| @description This controller is responsible for the CRUD of products.
+ */
+$route['products']['get'] = 'product';
+$route['products/create']['get'] = 'product/create';
+$route['products/create']['post'] = 'product/create';
+$route['products/edit/(:num)']['get'] = 'product/edit/$1';
+$route['products/edit/(:num)']['post'] = 'product/edit/$1';
+$route['products/update/(:num)']['post'] = 'product/update/$1';
+
+/*
+| -------------------------------------------------------------------------
+| Purchase controller
+| -------------------------------------------------------------------------
+| @description This controller is responsible for the CRUD of purchases.
+ */
+$route['purchases']['get'] = 'purchase';
+$route['purchases/create']['get'] = 'purchase/create';
+$route['purchases/create']['post'] = 'purchase/create';
+$route['purchases/edit/(:num)']['get'] = 'purchase/edit/$1';
+$route['purchases/edit/(:num)']['post'] = 'purchase/edit/$1';
+$route['purchases/update/(:num)']['post'] = 'purchase/update/$1';
+$route['purchases/delete/(:num)']['get'] = 'purchase/deletePurchase/$1';
