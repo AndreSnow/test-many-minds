@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  php:
+    container_name: php_tmm
+    build: .
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "88:80"
+    depends_on:
+      - mysql
+    environment:
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_PORT: 3306
+      DB_USERNAME: ${DB_USERNAME}
+      DB_HOST: ${DB_HOST}
+      DB_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - tmm-network
+
+  mysql:
+    container_name: mysql_tmm
+    image: mysql:8.0
+    restart: unless-stopped
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS_ROOT}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:3306
+    networks:
+      - tmm-network
+networks:
+  tmm-network:
+    driver: bridge
